@@ -92,7 +92,9 @@ def _recursively_make_command_docs(
 def _build_command_context(
     prog_name: str, command: click.BaseCommand, parent: click.Context | None
 ) -> click.Context:
-    return click.Context(cast(click.Command, command), info_name=prog_name, parent=parent)
+    return click.Context(
+        cast(click.Command, command), info_name=prog_name, parent=parent, **command.context_settings
+    )
 
 
 def _get_sub_commands(command: click.Command, ctx: click.Context) -> list[click.Command]:
